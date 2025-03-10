@@ -1,0 +1,39 @@
+.wrapper {
+  background-color: black;
+  height: 100vh;
+  display: flex;
+}
+
+.leftSide {
+  width: 50%;
+}
+
+.rightSide {
+  width: 50%;
+}
+
+.rightSide h1 {
+  color: white;
+  font-size: 100px;
+  font-weight: 800;
+}
+.rightSide h4 {
+  color: white;
+  font-size: 48px;
+  font-weight: 800;
+}
+
+.Xicon {
+  color: white;
+}
+
+.buttonElem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 200px;
+  color: white;
+}
+.buttonElem button {
+  margin-bottom: 20px;
+}

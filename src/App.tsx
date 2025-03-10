@@ -1,9 +1,12 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { SignIn } from "./Components/SigIn/SigIn";
 
 function App() {
   return (
-    <div>App</div>
+    <div>
+      <SignIn />
+    </div>
   );
 }
 
