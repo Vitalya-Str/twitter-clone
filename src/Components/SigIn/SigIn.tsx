@@ -3,6 +3,7 @@ import Email from "@mui/icons-material/AlternateEmail";
 import PasswordIcon from "@mui/icons-material/Password";
 import RegistIcon from "@mui/icons-material/AppRegistration";
 import s from "./SigIn.module.css";
+import { FormFormik } from "../FormFormik/FormFormik";
 
 export const SignIn = () => {
   return (
@@ -21,13 +22,34 @@ export const SignIn = () => {
           </div>
           <div className={s.buttonBox}>
             <PasswordIcon className={s.buttonIcon} />
-            <button className={s.twitButton}>Passwod</button>
+            <button className={s.twitButton}>Password</button>
           </div>
 
           <div style={{ marginBottom: "20px" }}>----------ИЛИ----------</div>
           <div className={s.buttonBox}>
             <RegistIcon className={s.buttonIcon} />
-            <button className={s.twitButton}>Зарегестрироваться</button>
+            <a href="#openModal">
+              <button className={s.twitButton}>Зарегистрироваться</button>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div id="openModal" className={s.modal}>
+        <div className={s.modal_dialog}>
+          <div className={s.modal_content}>
+            <div className={s.modal_header}>
+              <div className={s.modalIcon}>
+                <XIcon />
+              </div>
+              <a href="#close" title="Close" className={s.close}>
+                ×
+              </a>
+            </div>
+
+            <div className={s.modal_body}>
+              <h1 className={s.modal_title}>Создайте учетную запись</h1>
+              <FormFormik />
+            </div>
           </div>
         </div>
       </div>
