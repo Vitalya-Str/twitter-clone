@@ -44,6 +44,7 @@
 }
 .buttonElem :last-child button {
   background-color: rgb(29, 155, 240);
+  color: white;
 }
 .buttonBox {
   position: relative;
@@ -96,7 +97,7 @@
   pointer-events: none; /* элемент невидим для событий мыши */
   margin: 0;
   padding: 0;
-  backdrop-filter: blur(5px);
+  background-color: rgba(91, 112, 131, 0.4);
 }
 /* при отображении модального окно */
 .modal:target {
@@ -128,16 +129,17 @@
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  background-color: #fff;
+  background-color: black;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 1rem;
   outline: 0;
+  height: 600px;
   width: 700px;
   justify-content: center;
   align-items: center;
-  /* background-color: black; */
+  color: white;
 }
 @media (min-width: 768px) {
   .modal_content {
@@ -180,15 +182,15 @@
   font-size: 30px;
   font-weight: 700;
   line-height: 1;
-  color: #000;
+  color: white;
   text-shadow: 0 1px 0 #fff;
-  opacity: 0.5;
+  opacity: 1;
   text-decoration: none;
 }
 /* свойства для кнопки "Закрыть" при нахождении её в фокусе или наведении */
 .close:focus,
 .close:hover {
-  color: #000;
+  color: white;
   text-decoration: none;
   cursor: pointer;
   opacity: 0.75;
