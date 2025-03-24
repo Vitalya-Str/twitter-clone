@@ -30,6 +30,7 @@ const theme = createTheme({
       fontSize: "1rem",
     },
   },
+  
 });
 
 export default theme;

@@ -6,7 +6,7 @@
 .headerPost {
   display: flex;
   justify-content: space-between;
-  width: 690px;
+  width: 630px;
 }
 .headerPostName {
   display: flex;
@@ -42,7 +42,7 @@
 .bottomBox {
   display: flex;
   justify-content: space-between;
-  padding: 20px 0;
+  padding: 10px 8px 15px 0;
 }
 
 .bottomElem {
