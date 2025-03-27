@@ -4,6 +4,10 @@ import s from "./Home.module.css";
 import SearchIcon from "@mui/icons-material/SearchOutlined";
 import { Posts } from "../Posts/Posts";
 import { Post } from "../Posts/Post";
+import { useDispatch, useSelector } from "react-redux";
+import { selectPosts, setItemsPost } from "../../App/Slice/PostItemSlice";
+import { useEffect } from "react";
+import axios from "axios";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -18,7 +22,7 @@ const Search = styled("div")(({ theme }) => ({
   width: "100%",
   [theme.breakpoints.up("sm")]: {
     marginLeft: theme.spacing(4),
-    width: "100",
+    width: "100%",
   },
 }));
 
@@ -30,14 +34,15 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+
   color: alpha(theme.palette.common.white, 0.25),
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
-
+  fontSize: 20,
   "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
+    padding: theme.spacing(2, 2, 2, 0),
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
     width: "100%",
@@ -48,6 +53,15 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export const Home = () => {
+  const posts = useSelector(selectPosts);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    axios.get("https://6783e7b58b6c7a1316f60805.mockapi.io/twitterClone/").then((responce) => {
+      dispatch(setItemsPost(responce.data));
+    });
+  }, []);
+
   return (
     <Container maxWidth={"xl"}>
       <Grid2 container sx={{ justifyContent: "center", alignItems: "flex-start", color: "white" }}>
@@ -64,8 +78,8 @@ export const Home = () => {
             </div>
           </header>
           <Posts />
-          {[...Array(10)].map((__, i) => (
-            <Post key={i} />
+          {posts.map((post, i) => (
+            <Post key={i} {...post} />
           ))}
         </Grid2>
         <Grid2 size={3}>

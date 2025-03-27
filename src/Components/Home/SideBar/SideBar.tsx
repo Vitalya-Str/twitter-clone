@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, Modal } from "@mui/material";
 import s from "./SideBar.module.css";
 import HomeIcon from "@mui/icons-material/Home";
 import SearcIcon from "@mui/icons-material/SearchOutlined";
@@ -8,8 +8,14 @@ import PeopleIcon from "@mui/icons-material/PeopleAltOutlined";
 import ProfileIcon from "@mui/icons-material/PermIdentityOutlined";
 import XIcon from "@mui/icons-material/X";
 import { Link } from "react-router-dom";
+import React from "react";
+import { Posts } from "../../Posts/Posts";
 
 export const SideBar = () => {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   return (
     <div className={s.sideBar}>
       <ul className={s.ulStyle}>
@@ -42,7 +48,15 @@ export const SideBar = () => {
           <li className={s.listItem}>Profile</li>
         </div>
       </ul>
+
+      <div className={s.SideBarModal}>
+        <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
+          <Posts />
+        </Modal>
+      </div>
+
       <Button
+        onClick={handleOpen}
         sx={{
           fontWeight: "700",
           fontSize: "20px",
@@ -53,7 +67,6 @@ export const SideBar = () => {
           height: "70px",
           color: "black",
         }}
-        href="#contained-buttons"
       >
         Post
       </Button>

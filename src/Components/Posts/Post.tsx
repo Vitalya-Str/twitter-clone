@@ -9,24 +9,29 @@ import ReplyIcon from "@mui/icons-material/ReplyAllOutlined";
 import { IconButton } from "@mui/material";
 import s from "./Post.module.css";
 import { Link } from "react-router-dom";
+import { FC } from "react";
+import { PostItem } from "../../App/Slice/PostItemSlice";
 
-export const Post = () => {
+export const Post: FC<PostItem> = ({ item }) => {
+  const { avatarUrl, fullName, lastName, post } = item;
+
   return (
     <div className={s.containerPost}>
       <div>
-        <AccountIcon sx={{ fontSize: "65px", marginRight: "8px" }} />
+        {/* <AccountIcon sx={{ fontSize: "65px", marginRight: "8px" }} /> */}
+        {avatarUrl}
       </div>
       <div>
         <div className={s.headerPost}>
           <div className={s.headerPostName}>
             <div>
               <Link className={s.namePost} to="#">
-                Vitalya
+                {fullName}
               </Link>
             </div>
             <div>
               <Link className={s.nickName} to="#">
-                @name
+                @{lastName}
               </Link>
             </div>
           </div>
@@ -36,7 +41,7 @@ export const Post = () => {
             </IconButton>
           </div>
         </div>
-        <div>Content</div>
+        <div>{post}</div>
         <div className={s.bottomBox}>
           <div className={s.bottomElem}>
             <ChatIcon sx={{ paddingRight: "5px" }} />
