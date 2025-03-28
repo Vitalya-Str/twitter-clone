@@ -5,7 +5,7 @@ import SearchIcon from "@mui/icons-material/SearchOutlined";
 import { Posts } from "../Posts/Posts";
 import { Post } from "../Posts/Post";
 import { useDispatch, useSelector } from "react-redux";
-import { selectPosts, setItemsPost } from "../../App/Slice/PostItemSlice";
+import { selectPosts, setItemsPost } from "../../App/Slice/tweetsSlice";
 import { useEffect } from "react";
 import axios from "axios";
 
@@ -60,7 +60,7 @@ export const Home = () => {
     axios.get("https://6783e7b58b6c7a1316f60805.mockapi.io/twitterClone/").then((responce) => {
       dispatch(setItemsPost(responce.data));
     });
-  }, []);
+  }, [dispatch]);
 
   return (
     <Container maxWidth={"xl"}>

@@ -4,7 +4,7 @@ import { RootState } from "../Store";
 
 export interface PostItem {
   _id: string;
-  item: {
+  tweet: {
     fullName: string;
     lastName: string;
     avatarUrl: string;
@@ -13,25 +13,25 @@ export interface PostItem {
 }
 
 export interface PostsItems {
-  items: PostItem[];
+  tweets: PostItem[];
 }
 
 const initialState: PostsItems = {
-  items: [],
+  tweets: [],
 };
 
-export const postsItemSlice = createSlice({
-  name: "posts",
+export const tweetsSlice = createSlice({
+  name: "tweets",
   initialState,
   reducers: {
     setItemsPost(state, action: PayloadAction<PostItem[]>) {
-      state.items = action.payload;
+      state.tweets = action.payload;
     },
   },
 });
 
-export const { setItemsPost } = postsItemSlice.actions;
+export const { setItemsPost } = tweetsSlice.actions;
 
-export const selectPosts = (state: RootState) => state.posts.items;
+export const selectPosts = (state: RootState) => state.tweets.tweets;
 
-export default postsItemSlice.reducer;
+export default tweetsSlice.reducer;

@@ -6,20 +6,20 @@ import LikeIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import BarIcon from "@mui/icons-material/BarChartOutlined";
 import BookmarkIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import ReplyIcon from "@mui/icons-material/ReplyAllOutlined";
-import { IconButton } from "@mui/material";
+import { IconButton, Typography } from "@mui/material";
 import s from "./Post.module.css";
 import { Link } from "react-router-dom";
 import { FC } from "react";
-import { PostItem } from "../../App/Slice/PostItemSlice";
+import { PostItem } from "../../App/Slice/tweetsSlice";
 
-export const Post: FC<PostItem> = ({ item }) => {
-  const { avatarUrl, fullName, lastName, post } = item;
+export const Post: FC<PostItem> = ({ tweet }) => {
+  const { fullName, lastName, post } = tweet;
 
   return (
     <div className={s.containerPost}>
       <div>
-        {/* <AccountIcon sx={{ fontSize: "65px", marginRight: "8px" }} /> */}
-        {avatarUrl}
+        <AccountIcon sx={{ fontSize: "65px", marginRight: "8px" }} />
+        {/* {avatarUrl} */}
       </div>
       <div>
         <div className={s.headerPost}>
@@ -41,7 +41,7 @@ export const Post: FC<PostItem> = ({ item }) => {
             </IconButton>
           </div>
         </div>
-        <div>{post}</div>
+        <Typography sx={{ fontSize: "18px" }}>{post}</Typography>
         <div className={s.bottomBox}>
           <div className={s.bottomElem}>
             <ChatIcon sx={{ paddingRight: "5px" }} />
