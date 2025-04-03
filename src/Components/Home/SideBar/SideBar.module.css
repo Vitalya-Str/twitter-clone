@@ -44,4 +44,6 @@
   padding-right: 20px;
 }
 
-
+.modal {
+  max-width: 730px !important;
+}

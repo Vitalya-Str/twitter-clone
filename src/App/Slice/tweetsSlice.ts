@@ -13,18 +13,16 @@ export interface PostItem {
 }
 
 export interface PostsItems {
-  tweets: PostItem[];
+  tweets?: PostItem[];
 }
 
-const initialState: PostsItems = {
-  tweets: [],
-};
+const initialState: PostsItems = {};
 
 export const tweetsSlice = createSlice({
   name: "tweets",
   initialState,
   reducers: {
-    setItemsPost(state, action: PayloadAction<PostItem[]>) {
+    setItemsPost(state, action: PayloadAction<PostItem[] | undefined>) {
       state.tweets = action.payload;
     },
   },
@@ -32,6 +30,6 @@ export const tweetsSlice = createSlice({
 
 export const { setItemsPost } = tweetsSlice.actions;
 
-export const selectPosts = (state: RootState) => state.tweets.tweets;
+export const selectTweets = (state: RootState) => state.tweets.tweets;
 
 export default tweetsSlice.reducer;

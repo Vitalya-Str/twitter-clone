@@ -1,7 +1,7 @@
 import { Formik } from "formik";
-import s from "./FormFormik.module.css";
+import s from "./AddFormSignIn.module.css";
 
-export const FormFormik = () => (
+export const AddFormSignIn = () => (
   <div>
     <Formik
       initialValues={{ email: "", password: "" }}

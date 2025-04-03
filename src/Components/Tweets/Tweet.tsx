@@ -7,12 +7,12 @@ import BarIcon from "@mui/icons-material/BarChartOutlined";
 import BookmarkIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import ReplyIcon from "@mui/icons-material/ReplyAllOutlined";
 import { IconButton, Typography } from "@mui/material";
-import s from "./Post.module.css";
+import s from "./Tweet.module.css";
 import { Link } from "react-router-dom";
 import { FC } from "react";
 import { PostItem } from "../../App/Slice/tweetsSlice";
 
-export const Post: FC<PostItem> = ({ tweet }) => {
+export const Tweet: FC<PostItem> = ({ tweet, _id }) => {
   const { fullName, lastName, post } = tweet;
 
   return (
@@ -26,7 +26,7 @@ export const Post: FC<PostItem> = ({ tweet }) => {
           <div className={s.headerPostName}>
             <div>
               <Link className={s.namePost} to="#">
-                {fullName}
+                <b>{fullName}</b>
               </Link>
             </div>
             <div>

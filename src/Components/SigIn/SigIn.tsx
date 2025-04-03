@@ -3,7 +3,7 @@ import Email from "@mui/icons-material/AlternateEmail";
 import PasswordIcon from "@mui/icons-material/Password";
 import RegistIcon from "@mui/icons-material/AppRegistration";
 import s from "./SigIn.module.css";
-import { FormFormik } from "../FormFormik/FormFormik";
+import { AddFormSignIn } from "../AddFormSignIn/AddFormSignIn";
 
 export const SignIn = () => {
   return (
@@ -48,7 +48,7 @@ export const SignIn = () => {
 
             <div className={s.modal_body}>
               <h1 className={s.modal_title}>Создайте учетную запись</h1>
-              <FormFormik />
+              <AddFormSignIn />
             </div>
           </div>
         </div>

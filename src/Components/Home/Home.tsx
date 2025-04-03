@@ -2,12 +2,12 @@ import { alpha, Container, Grid2, InputBase, styled, Typography } from "@mui/mat
 import { SideBar } from "./SideBar/SideBar";
 import s from "./Home.module.css";
 import SearchIcon from "@mui/icons-material/SearchOutlined";
-import { Posts } from "../Posts/Posts";
-import { Post } from "../Posts/Post";
 import { useDispatch, useSelector } from "react-redux";
-import { selectPosts, setItemsPost } from "../../App/Slice/tweetsSlice";
+import { selectTweets, setItemsPost } from "../../App/Slice/tweetsSlice";
 import { useEffect } from "react";
 import axios from "axios";
+import { Tweet } from "../Tweets/Tweet";
+import { AddTweet } from "../Tweets/AddTweet";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -53,7 +53,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export const Home = () => {
-  const posts = useSelector(selectPosts);
+  const tweets = useSelector(selectTweets);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -61,6 +62,10 @@ export const Home = () => {
       dispatch(setItemsPost(responce.data));
     });
   }, [dispatch]);
+
+  if (!tweets) {
+    return <h1>Loading</h1>;
+  }
 
   return (
     <Container maxWidth={"xl"}>
@@ -77,9 +82,9 @@ export const Home = () => {
               <Typography variant="h6">Following</Typography>
             </div>
           </header>
-          <Posts />
-          {posts.map((post, i) => (
-            <Post key={i} {...post} />
+          <AddTweet />
+          {tweets.map((tweet, i) => (
+            <Tweet key={i} {...tweet} />
           ))}
         </Grid2>
         <Grid2 size={3}>
