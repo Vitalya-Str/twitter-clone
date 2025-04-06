@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import tweetsSlice from "./Slice/tweetsSlice";
+import { postSlice } from "./Slice/postSlice";
 
 export const store = configureStore({
   reducer: {
     tweets: tweetsSlice,
+    post: postSlice.reducer,
   },
 });
 

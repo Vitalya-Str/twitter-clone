@@ -12,36 +12,38 @@ import { Link } from "react-router-dom";
 import { FC } from "react";
 import { PostItem } from "../../App/Slice/tweetsSlice";
 
-export const Tweet: FC<PostItem> = ({ tweet, _id }) => {
+export const Tweet: FC<PostItem> = ({ tweet, id }) => {
   const { fullName, lastName, post } = tweet;
 
   return (
     <div className={s.containerPost}>
       <div>
         <AccountIcon sx={{ fontSize: "65px", marginRight: "8px" }} />
-        {/* {avatarUrl} */}
       </div>
       <div>
-        <div className={s.headerPost}>
-          <div className={s.headerPostName}>
-            <div>
-              <Link className={s.namePost} to="#">
-                <b>{fullName}</b>
-              </Link>
+        <Link to={`/post/${id}`}>
+          <div className={s.headerPost}>
+            <div className={s.headerPostName}>
+              <div>
+                <Link className={s.namePost} to="#">
+                  <b>{fullName}</b>
+                </Link>
+              </div>
+              <div>
+                <Link className={s.nickName} to="#">
+                  @{lastName}
+                </Link>
+              </div>
             </div>
             <div>
-              <Link className={s.nickName} to="#">
-                @{lastName}
-              </Link>
+              <IconButton size="small" color="primary" aria-label="...">
+                <MoreIcon sx={{ fontSize: "30px" }} />
+              </IconButton>
             </div>
           </div>
-          <div>
-            <IconButton size="small" color="primary" aria-label="...">
-              <MoreIcon sx={{ fontSize: "30px" }} />
-            </IconButton>
-          </div>
-        </div>
-        <Typography sx={{ fontSize: "18px" }}>{post}</Typography>
+          <Typography sx={{ fontSize: "18px" }}>{post}</Typography>
+        </Link>
+
         <div className={s.bottomBox}>
           <div className={s.bottomElem}>
             <ChatIcon sx={{ paddingRight: "5px" }} />

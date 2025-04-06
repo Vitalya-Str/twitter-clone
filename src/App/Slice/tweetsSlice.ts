@@ -3,7 +3,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../Store";
 
 export interface PostItem {
-  _id: string;
+  id: string;
   tweet: {
     fullName: string;
     lastName: string;
