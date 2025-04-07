@@ -54,7 +54,6 @@ export const Layout = () => {
           <SideBar />
         </Grid2>
         <Grid2 sx={{ border: "1px solid rgba(76, 68, 68, 0.3)" }} size={6}>
-          
 
           <Outlet />
 

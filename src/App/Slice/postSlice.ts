@@ -19,6 +19,8 @@ export const postSlice = createSlice({
   },
 });
 
+
+
 export const { setPostId } = postSlice.actions;
 
 export const selectPostId = (state: RootState) => state.post;
