@@ -1,30 +1,38 @@
 import { Link, useParams } from "react-router-dom";
 import s from "./Post.module.css";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import axios from "axios";
-import { selectPostId, setPostId } from "../../App/Slice/postSlice";
+import { getPostDetails, selectPostId, setPostDetails } from "../../App/Slice/postSlice";
 import { useSelector } from "react-redux";
 import { Box, IconButton, Typography } from "@mui/material";
 import ArrowIcon from "@mui/icons-material/ArrowBackOutlined";
+import { Tweet } from "../Tweets/Tweet";
+import { useDispatch } from "react-redux";
 
 export const Post = () => {
-  const dispatch = useDispatch();
   const item = useSelector(selectPostId);
+  const dispatch = useDispatch();
 
-  const params = useParams();
+  const params: { id?: string } = useParams();
+  const id = params.id;
 
   useEffect(() => {
-    const id = params.id;
+    if (id) {
+      //@ts-ignore
+      dispatch(getPostDetails(id));
+    }
+    return () => {
+      dispatch(setPostDetails(undefined));
+    };
+  }, [id]);
 
-    axios.get(`https://6783e7b58b6c7a1316f60805.mockapi.io/twitterClone/${id}`).then((responce) => {
-      dispatch(setPostId(responce.data));
-    });
-  }, [dispatch, params.id]);
+  if (!item.post) {
+    return null;
+  }
 
   return (
     <>
-      <header>
+      <header className={s.headerWrapper}>
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <div>
             <Link to="/">
@@ -38,7 +46,8 @@ export const Post = () => {
           </Typography>
         </Box>
       </header>
-      {item.post?.tweet.post}
+
+      <Tweet id={item.post.id} tweet={item.post.tweet} />
     </>
   );
 };

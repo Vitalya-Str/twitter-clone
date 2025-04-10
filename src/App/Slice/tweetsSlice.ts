@@ -25,6 +25,13 @@ export const tweetsSlice = createSlice({
     setItemsPost(state, action: PayloadAction<PostItem[] | undefined>) {
       state.tweets = action.payload;
     },
+    setInputTweet(state, action: PayloadAction<PostItem>) {
+      if (state.tweets) {
+        state.tweets = [...state.tweets, action.payload];
+      } else {
+        state.tweets = [action.payload];
+      }
+    },
   },
 });
 

@@ -8,12 +8,13 @@ import BookmarkIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import ReplyIcon from "@mui/icons-material/ReplyAllOutlined";
 import { IconButton, Typography } from "@mui/material";
 import s from "./Tweet.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FC } from "react";
 import { PostItem } from "../../App/Slice/tweetsSlice";
 
 export const Tweet: FC<PostItem> = ({ tweet, id }) => {
   const { fullName, lastName, post } = tweet;
+  const navigate = useNavigate();
 
   return (
     <div className={s.containerPost}>
@@ -21,7 +22,11 @@ export const Tweet: FC<PostItem> = ({ tweet, id }) => {
         <AccountIcon sx={{ fontSize: "65px", marginRight: "8px" }} />
       </div>
       <div>
-        <Link to={`/post/${id}`}>
+        <div
+          onClick={() => {
+            navigate(`/post/${id}`);
+          }}
+        >
           <div className={s.headerPost}>
             <div className={s.headerPostName}>
               <div>
@@ -42,7 +47,7 @@ export const Tweet: FC<PostItem> = ({ tweet, id }) => {
             </div>
           </div>
           <Typography sx={{ fontSize: "18px" }}>{post}</Typography>
-        </Link>
+        </div>
 
         <div className={s.bottomBox}>
           <div className={s.bottomElem}>

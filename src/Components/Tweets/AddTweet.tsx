@@ -4,16 +4,25 @@ import MediaIcon from "@mui/icons-material/BrokenImageOutlined";
 import GifIcon from "@mui/icons-material/GifBoxOutlined";
 import EmojiIcon from "@mui/icons-material/SentimentSatisfiedAltOutlined";
 import s from "./AddTweet.module.css";
+import { useState } from "react";
 
 const ariaLabel = { "aria-label": "description" };
 
 export const AddTweet = () => {
+  const [inputValue, setInputValue] = useState("");
+
+
   return (
     <div className={s.postWrapper}>
       <AccountIcon sx={{ fontSize: "65px", marginRight: "8px" }} />
       <div>
         <div>
-          <Input sx={{ color: "white", fontSize: "30px", padding: "12px 0", width: "100%" }} placeholder="What`s happening?" inputProps={ariaLabel} />
+          <Input
+            onChange={(e) => setInputValue(e.target.value)}
+            sx={{ color: "white", fontSize: "30px", padding: "12px 0", width: "100%" }}
+            placeholder="What`s happening?"
+            inputProps={ariaLabel}
+          />
         </div>
         <div className={s.iconWrapper}>
           <div className={s.iconButton}>
@@ -38,7 +47,6 @@ export const AddTweet = () => {
                 height: "40px",
                 color: "black",
               }}
-              href="#contained-buttons"
             >
               Post
             </Button>
