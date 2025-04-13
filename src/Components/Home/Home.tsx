@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { selectTweets, setItemsPost } from "../../App/Slice/tweetsSlice";
+import { getPostItem, selectTweets } from "../../App/Slice/tweetsSlice";
 import { useEffect } from "react";
-import axios from "axios";
 import { Tweet } from "../Tweets/Tweet";
 import { AddTweet } from "../Tweets/AddTweet";
 import Typography from "@mui/material/Typography";
@@ -13,9 +12,8 @@ export const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    axios.get("https://6783e7b58b6c7a1316f60805.mockapi.io/twitterClone/").then((responce) => {
-      dispatch(setItemsPost(responce.data));
-    });
+    // @ts-ignore
+    dispatch(getPostItem());
   }, [dispatch]);
 
   if (!tweets) {

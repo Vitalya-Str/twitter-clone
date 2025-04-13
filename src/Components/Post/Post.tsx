@@ -1,7 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import s from "./Post.module.css";
 import { useEffect } from "react";
-import axios from "axios";
 import { getPostDetails, selectPostId, setPostDetails } from "../../App/Slice/postSlice";
 import { useSelector } from "react-redux";
 import { Box, IconButton, Typography } from "@mui/material";
@@ -24,7 +23,7 @@ export const Post = () => {
     return () => {
       dispatch(setPostDetails(undefined));
     };
-  }, [id]);
+  }, [id, dispatch]);
 
   if (!item.post) {
     return null;

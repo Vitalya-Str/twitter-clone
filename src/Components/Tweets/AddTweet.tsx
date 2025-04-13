@@ -5,12 +5,31 @@ import GifIcon from "@mui/icons-material/GifBoxOutlined";
 import EmojiIcon from "@mui/icons-material/SentimentSatisfiedAltOutlined";
 import s from "./AddTweet.module.css";
 import { useState } from "react";
+import { PostItem, setAddNewPost } from "../../App/Slice/tweetsSlice";
+import { useDispatch } from "react-redux";
 
 const ariaLabel = { "aria-label": "description" };
 
 export const AddTweet = () => {
+  const dispatch = useDispatch();
+
   const [inputValue, setInputValue] = useState("");
 
+  const newPost: PostItem = {
+    id: "22",
+    tweet: {
+      fullName: "Vitalya",
+      lastName: "Strela",
+      avatarUrl: "ava",
+      post: inputValue,
+    },
+  };
+
+  const setNewPost = () => {
+    // @ts-ignore
+    dispatch(setAddNewPost(newPost));
+    setInputValue("");
+  };
 
   return (
     <div className={s.postWrapper}>
@@ -18,6 +37,7 @@ export const AddTweet = () => {
       <div>
         <div>
           <Input
+            value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             sx={{ color: "white", fontSize: "30px", padding: "12px 0", width: "100%" }}
             placeholder="What`s happening?"
@@ -38,6 +58,8 @@ export const AddTweet = () => {
           </div>
           <div>
             <Button
+              onClick={() => setNewPost()}
+              disabled={!inputValue}
               sx={{
                 fontWeight: "700",
                 fontSize: "16px",

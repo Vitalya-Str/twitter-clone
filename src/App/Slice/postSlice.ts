@@ -3,7 +3,6 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../Store";
 import { PostItem } from "./tweetsSlice";
 import axios from "axios";
-import { useDispatch } from "react-redux";
 
 export interface PostDetails {
   post?: PostItem;
