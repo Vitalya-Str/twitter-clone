@@ -1,16 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../Store";
-import axios from "axios";
+import { axios } from "../../core/axios";
 
 export interface PostItem {
-  id: string;
-  tweet: {
-    fullName: string;
-    lastName: string;
+  _id: string;
+  user: {
+    _id: string;
+    fullname: string;
+    username: string;
     avatarUrl: string;
-    post: string;
   };
+  text: string;
 }
 
 export interface PostsItems {
@@ -23,7 +24,7 @@ export const tweetsSlice = createSlice({
   name: "tweets",
   initialState,
   reducers: {
-    setItemsPost(state, action: PayloadAction<PostItem[] | undefined>) {
+    setItemsPost(state, action: PayloadAction<PostItem[]>) {
       state.tweets = action.payload;
     },
     setInputTweet(state, action: PayloadAction<PostItem>) {
@@ -42,15 +43,20 @@ export const selectTweets = (state: RootState) => state.tweets.tweets;
 
 export const getPostItem = () => {
   return async (dispatch: any) => {
-    const data = await axios.get("https://6783e7b58b6c7a1316f60805.mockapi.io/twitterClone/").then((responce) => responce.data);
-    dispatch(setItemsPost(data));
+    const data = await axios.get("/tweet").then((responce) => responce.data);
+
+    dispatch(setItemsPost(data.data));
   };
 };
 
-export const setAddNewPost = (newPost: PostItem) => {
+export const setAddNewPost = (newPost: string) => {
   return async (dispatch: any) => {
-    const data = await axios.post("https://6783e7b58b6c7a1316f60805.mockapi.io/twitterClone/", newPost).then((responce) => responce.data);
-    dispatch(setInputTweet(data));
+    const data = await axios
+      .post("/tweet", {
+        text: newPost,
+      })
+      .then((responce) => responce.data);
+    dispatch(setInputTweet(data.data));
   };
 };
 

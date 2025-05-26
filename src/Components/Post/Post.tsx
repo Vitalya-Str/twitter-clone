@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 
 export const Post = () => {
   const item = useSelector(selectPostId);
+
   const dispatch = useDispatch();
 
   const params: { id?: string } = useParams();
@@ -25,8 +26,8 @@ export const Post = () => {
     };
   }, [id, dispatch]);
 
-  if (!item.post) {
-    return null;
+  if (!item) {
+    return <div> Loading</div>;
   }
 
   return (
@@ -46,7 +47,7 @@ export const Post = () => {
         </Box>
       </header>
 
-      <Tweet id={item.post.id} tweet={item.post.tweet} />
+      <Tweet _id={item._id} user={item.user} text={item.text} />
     </>
   );
 };

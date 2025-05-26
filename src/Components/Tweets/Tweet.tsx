@@ -12,8 +12,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { FC } from "react";
 import { PostItem } from "../../App/Slice/tweetsSlice";
 
-export const Tweet: FC<PostItem> = ({ tweet, id }) => {
-  const { fullName, lastName, post } = tweet;
+export const Tweet: FC<PostItem> = ({ user, _id, text }) => {
+  
+
+  const { fullname, username } = user;
+
   const navigate = useNavigate();
 
   return (
@@ -24,19 +27,19 @@ export const Tweet: FC<PostItem> = ({ tweet, id }) => {
       <div>
         <div
           onClick={() => {
-            navigate(`/post/${id}`);
+            navigate(`/post/${_id}`);
           }}
         >
           <div className={s.headerPost}>
             <div className={s.headerPostName}>
               <div>
                 <Link className={s.namePost} to="#">
-                  <b>{fullName}</b>
+                  <b>{fullname}</b>
                 </Link>
               </div>
               <div>
                 <Link className={s.nickName} to="#">
-                  @{lastName}
+                  @{username}
                 </Link>
               </div>
             </div>
@@ -46,7 +49,7 @@ export const Tweet: FC<PostItem> = ({ tweet, id }) => {
               </IconButton>
             </div>
           </div>
-          <Typography sx={{ fontSize: "18px" }}>{post}</Typography>
+          <Typography sx={{ fontSize: "18px" }}>{text}</Typography>
         </div>
 
         <div className={s.bottomBox}>

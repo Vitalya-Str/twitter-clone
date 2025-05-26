@@ -5,7 +5,7 @@ import GifIcon from "@mui/icons-material/GifBoxOutlined";
 import EmojiIcon from "@mui/icons-material/SentimentSatisfiedAltOutlined";
 import s from "./AddTweet.module.css";
 import { useState } from "react";
-import { PostItem, setAddNewPost } from "../../App/Slice/tweetsSlice";
+import { setAddNewPost } from "../../App/Slice/tweetsSlice";
 import { useDispatch } from "react-redux";
 
 const ariaLabel = { "aria-label": "description" };
@@ -15,19 +15,9 @@ export const AddTweet = () => {
 
   const [inputValue, setInputValue] = useState("");
 
-  const newPost: PostItem = {
-    id: "22",
-    tweet: {
-      fullName: "Vitalya",
-      lastName: "Strela",
-      avatarUrl: "ava",
-      post: inputValue,
-    },
-  };
-
   const setNewPost = () => {
     // @ts-ignore
-    dispatch(setAddNewPost(newPost));
+    dispatch(setAddNewPost(inputValue));
     setInputValue("");
   };
 

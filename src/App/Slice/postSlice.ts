@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../Store";
 import { PostItem } from "./tweetsSlice";
-import axios from "axios";
+import { axios } from "../../core/axios";
 
 export interface PostDetails {
   post?: PostItem;
@@ -10,13 +10,14 @@ export interface PostDetails {
 
 const initialState: PostDetails = {
   post: {
-    id: "",
-    tweet: {
-      fullName: "",
-      lastName: "",
+    _id: "",
+    user: {
+      _id: "",
+      fullname: "",
+      username: "",
       avatarUrl: "",
-      post: "",
     },
+    text: "",
   },
 };
 
@@ -32,14 +33,14 @@ export const postSlice = createSlice({
 
 export const { setPostDetails } = postSlice.actions;
 
-export const selectPostId = (state: RootState) => state.post;
+export const selectPostId = (state: RootState) => state.post.post;
 
 export const getPostDetails = (id: string) => {
   return async (dispatch: any) => {
-    const data = await axios.get(`https://6783e7b58b6c7a1316f60805.mockapi.io/twitterClone/${id}`).then((responce) => {
+    const data = await axios.get("/tweet/" + id).then((responce) => {
       return responce.data;
     });
-    dispatch(setPostDetails(data));
+    dispatch(setPostDetails(data.data));
   };
 };
 
